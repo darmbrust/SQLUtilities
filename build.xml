@@ -1,5 +1,5 @@
 <!--
-   Copyright 2007 Daniel Armbrust 
+   Copyright 2007-2011 Daniel Armbrust 
    Licensed under the Apache License, Version 2.0 (the "License"); 
    you may not use this file except in compliance with the License. 
    You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 -->
 <project name="SQL Wrapper" default="all" basedir=".">
 	<description>
-		Buildfile for the Indexer Service
+		Buildfile for the SQL Wrapper
 	</description>
 	<!-- set global properties for this build -->
 	<property name="src" location="src" />
@@ -28,14 +28,12 @@
 
 		<path id="classpath">
 			<fileset dir="${lib}" id="libs">
-				<!--//used for jarDepen-->
 				<include name="*.jar" />
 			</fileset>
 		</path>
 	</target>
 
 	<target name="clean" depends="init" description="clean up">
-		<!-- Delete the ${build} and ${dist} directory trees -->
 		<delete dir="${classes}" />
 		<delete file="${antBuild}/SQLWrapper.jar"/>
 	</target>
@@ -44,15 +42,13 @@
 		<mkdir dir="${classes}" />
 
 		<!-- Compile the java code from ${src} into ${classes} -->
-		<javac source="1.3" target="1.3" debug="true" srcdir="${src}" destdir="${classes}">
+		<javac source="1.6" target="1.6" debug="true" srcdir="${src}" destdir="${classes}">
 			<classpath refid="classpath" />
 		</javac>
 	</target>
 
-	<target name="jar" depends="compile" description="generate the jar file plus the dependancies">
-		<!-- Put everything in ${build} into .jar file -->
-			<jar jarfile="${antBuild}/SQLWrapper.jar" basedir="${classes}" duplicate="preserve">
-		</jar>
+	<target name="jar" depends="compile" description="generate the jar file">
+		<jar jarfile="${antBuild}/SQLWrapper.jar" basedir="${classes}" duplicate="preserve"/>
 	</target>
 
 	<target name="all" depends="init, clean, compile, jar" description="full build" />
