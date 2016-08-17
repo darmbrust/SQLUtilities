@@ -14,7 +14,7 @@
 -->
 <project name="SQL Wrapper" default="all" basedir=".">
 	<description>
-		Buildfile for the Indexer Service
+		Buildfile for the SQL Wrapper
 	</description>
 	<!-- set global properties for this build -->
 	<property name="src" location="src" />
